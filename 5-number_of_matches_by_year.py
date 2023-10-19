@@ -3,6 +3,7 @@ from main import matches
 
 def number_of_matches_per_year():
     match_dict = {}
+    # creating a dict with keys-> season and value -> number of matches played in that season
     for row in matches:
         try:
             match_dict[row['season']] += 1

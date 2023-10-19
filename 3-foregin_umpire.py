@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from main import matches,umpires
 
 def foreign_umpire_analysis():
-    umpires_list = []
+    umpires_list = [] #list of umpires
     for row in matches:
         if row['umpire1'] not in umpires_list:
             umpires_list.append(row['umpire1'])
@@ -12,8 +12,9 @@ def foreign_umpire_analysis():
     
     new_data = {}
     for row in umpires:
-        new_data[row['umpire']] = row[' country']
-    
+        # new_data[row['umpire']] = row[' country']
+        print(row)
+    print(new_data,umpires)
     final_data = {}
     for row in umpires_list:
         if row in new_data and new_data[row] != ' India':

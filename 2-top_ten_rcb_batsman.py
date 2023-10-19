@@ -3,14 +3,17 @@ from main import deliveries
 
 def top_ten_rcb_bastman():
     batsman_runs = {}
+    
+    # creating a dictinory with batsman as key and runs as it's value
     for row in deliveries:
         if row['batting_team'] == 'Royal Challengers Bangalore':
             batter, runs = row['batsman'] , int(row['batsman_runs'])
             try:
                 batsman_runs[batter] += runs
             except:
-                batsman_runs[batter] = int(runs)
-                
+                batsman_runs[batter] = runs
+    
+    #sorting the batsman runs to get top 10 batsman
     sorting_order = dict(sorted(batsman_runs.items(),key=lambda x: x[1],reverse=True))
     
     batsman = list(sorting_order.keys())[:10]

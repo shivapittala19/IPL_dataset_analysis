@@ -3,6 +3,7 @@ from main import deliveries,color_codes
 
 def total_runs_scored_by_team():
     runs_dict = {}
+    #creating a dictinary with key as a team and runs scored as it's value
     for row in deliveries:
         batting_team = row['batting_team']
         runs = int(row['total_runs'])
