@@ -12,9 +12,8 @@ def foreign_umpire_analysis():
     
     new_data = {}
     for row in umpires:
-        # new_data[row['umpire']] = row[' country']
-        print(row)
-    print(new_data,umpires)
+        new_data[row['umpire']] = row[' country']
+
     final_data = {}
     for row in umpires_list:
         if row in new_data and new_data[row] != ' India':
