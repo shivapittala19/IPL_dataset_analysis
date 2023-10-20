@@ -15,8 +15,8 @@ def top_economical_bowlers():
     for row in deliveries:
         if row['match_id'] in season_id:
             # ignoring wide balls and no_balls in the count of number of balls and adding the runs to the total runs conceded by a bowler
+            bowler, runs  = row['bowler'], int(row['total_runs'])
             if row['wide_runs'] == '0' and row['noball_runs'] == '0':
-                bowler, runs  = row['bowler'], int(row['total_runs'])
                 if bowler in bowler_dict:
                     bowler_dict[bowler][0] += runs
                     bowler_dict[bowler][1] += 1
