@@ -1,20 +1,18 @@
+"""to find the economical bowlers"""
 import matplotlib.pyplot as plt
 from main import deliveries, matches
 
 def top_economical_bowlers():
+    """to find the economical bowlers"""
     season_id = {}
     for row in matches:
         if row['season'] == '2015' and row['id'] not in season_id:
             season_id[row['id']] = 1
-    
-    bowler_dict = {} 
-    dict
-    # {
-    #     'bowler':['total_runs_conceded':'total_balls']
-    # }
+    bowler_dict = {}
     for row in deliveries:
         if row['match_id'] in season_id:
-            # ignoring wide balls and no_balls in the count of number of balls and adding the runs to the total runs conceded by a bowler
+            # ignoring wide balls and no_balls in the count of number of balls
+            # adding the runs to the total runs conceded by a bowler
             bowler, runs  = row['bowler'], int(row['total_runs'])
             if row['wide_runs'] == '0' and row['noball_runs'] == '0':
                 if bowler in bowler_dict:
@@ -27,16 +25,11 @@ def top_economical_bowlers():
                     bowler_dict[bowler][0] += runs
                 else:
                     bowler_dict[bowler] = [runs,0]
-                
-   
     for bowler in bowler_dict:
         bowler_dict[bowler] = round((bowler_dict[bowler][0] / bowler_dict[bowler][1]) * 6,2)
-    
     top_ten_bowlers = dict(sorted(bowler_dict.items(),key=lambda x: x[1])[:10])
-    
     bowler = list(top_ten_bowlers.keys())
     economy = list(top_ten_bowlers.values())
-    
     plt.bar(bowler,economy)
     plt.xlabel("Bowler")
     plt.ylabel("Economy")
@@ -44,4 +37,3 @@ def top_economical_bowlers():
     plt.show()
 
 top_economical_bowlers()
-
