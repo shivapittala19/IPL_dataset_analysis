@@ -1,28 +1,27 @@
-"""
-This Module is to find the total runs scored by team
-"""
+"""This Module is to find the total runs scored by team"""
 import matplotlib.pyplot as plt
-from main import deliveries,color_codes
+from main import deliveries
 
 def total_runs_scored_by_team():
     """ runs scored by each team icombined all seasons """
-    runs_dict = {}
+    runs_scored = {}
     #creating a dictinary with key as a team and runs scored as it's value
-    for row in deliveries:
-        batting_team = row['batting_team']
-        runs = int(row['total_runs'])
-        if batting_team in runs_dict:
-            runs_dict[batting_team] += runs
+    for bowl in deliveries:
+        batting_team = bowl['batting_team']
+        runs = int(bowl['total_runs'])
+        if batting_team in runs_scored:
+            runs_scored[batting_team] += runs
         else:
-            runs_dict[batting_team] = runs
-    x_values = list(runs_dict.keys())
-    y_values = list(runs_dict.values())
-    plt.bar(x_values,y_values,color = color_codes,label = x_values,width=0.5)
+            runs_scored[batting_team] = runs
+    team = list(runs_scored.keys())
+    runs = list(runs_scored.values())
+    plt.bar(team,runs,width=0.5)
     plt.xlabel("Team")
     plt.ylabel("Runs scored by team")
     plt.title("Runs scored by each team")
-    plt.legend()
     plt.xticks(rotation = 90)
+    for index,value in enumerate(runs):
+        plt.text(team[index],value,str(value),ha='center',va='bottom')
     plt.show()
 
 total_runs_scored_by_team()
